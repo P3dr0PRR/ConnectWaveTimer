@@ -1,0 +1,30 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "array": "cpp",
+            "deque": "cpp",
+            "string": "cpp",
+            "unordered_map": "cpp",
+            "vector": "cpp",
+            "string_view": "cpp",
+            "initializer_list": "cpp",
+            "utility": "cpp",
+            "algorithm": "cpp",
+            "unordered_set": "cpp",
+            "*.tcc": "cpp",
+            "system_error": "cpp",
+            "optional": "cpp",
+            "istream": "cpp",
+            "ostream": "cpp",
+            "functional": "cpp",
+            "tuple": "cpp",
+            "type_traits": "cpp"
+        },
+        "liveServer.settings.port": 5501
+    }
+}
