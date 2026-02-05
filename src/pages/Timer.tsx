@@ -9,14 +9,22 @@ export function Timer() {
           <label htmlFor="task" className='text-center shrink-0'>
            Vou trabalhar em
           </label>
+
+
           <input
             id="task"
+            list='task-suggestions'
             type="text"
             placeholder="Nome..."
-            className='w-full md:flex-1 md:min-w-0 text-center text-emerald-700 bg-transparent pb-2 border-b-2 border-emerald-700 box-shadow-none focus:outline-none focus:ring-0 focus:border-emerald-500'
-          />          
+            className='w-full md:flex-1 md:min-w-0 text-center text-emerald-500 text-2xl bg-transparent pb-2 border-b-2 border-emerald-700 box-shadow-none focus:outline-none focus:ring-0 focus:border-emerald-500'
+          />   
+          <datalist id="task-suggestions">
+            <option value="Projeto Front" />
+            <option value="Projeto Portifólio" />
+            <option value="Reunião" />
+          </datalist>       
           <label htmlFor="minutesAmount" className='text-center shrink-0'>Durante</label>
-          <input id="minutesAmount" type="number" placeholder="-  00 +" className='w-full md:flex-1 md:min-w-0 text-center text-emerald-700 bg-transparent pb-2 border-b-2 border-emerald-700 box-shadow-none focus:outline-none focus:ring-0 focus:border-emerald-500'/>
+          <input id="minutesAmount" max={60} type="number" placeholder="-  00 +" className='w-full md:flex-1 md:min-w-0 text-center text-emerald-500 text-2xl bg-transparent pb-2 border-b-2 border-emerald-700 box-shadow-none focus:outline-none focus:ring-0 focus:border-emerald-500'/>
             <span className=''>minutos.</span>        
         </div>
 
