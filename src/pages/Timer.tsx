@@ -1,9 +1,22 @@
+import { watch } from 'fs';
 import { Play } from 'lucide-react';
+import {useForm} from 'react-hook-form';
+
 
 export function Timer() {
+
+const {register, handleSubmit, watch} = useForm();
+
+function handleCreateNewCycle() {
+}
+
+const {task, minutesAmount} = watch();
+
+const isSubmitDisabled = !task || !minutesAmount;
+
   return (
     <section className="w-full h-full">
-      <form className="flex flex-col items-center justify-between py-2 h-full">
+      <form className="flex flex-col items-center justify-between py-2 h-full" onSubmit={handleSubmit(handleCreateNewCycle)}>
         <div className="flex flex-col md:flex-row md:flex-wrap gap-2 items-center justify-center w-full text-white text-lg">
           <label htmlFor="task" className="text-center shrink-0">
             Vou trabalhar em
@@ -15,6 +28,7 @@ export function Timer() {
             type="text"
             placeholder="Nome..."
             className="w-full md:flex-1 md:min-w-0 text-center text-emerald-500 text-2xl bg-transparent pb-2 border-b-2 border-emerald-700 box-shadow-none focus:outline-none focus:ring-0 focus:border-emerald-500"
+            {...register('task')}
           />
           <datalist id="task-suggestions">
             <option value="Projeto Front" />
@@ -31,6 +45,7 @@ export function Timer() {
             type="number"
             placeholder="-  00 +"
             className="w-full md:flex-1 md:min-w-0 text-center text-emerald-500 text-2xl bg-transparent pb-2 border-b-2 border-emerald-700 box-shadow-none focus:outline-none focus:ring-0 focus:border-emerald-500"
+            {...register('minutesAmount', { valueAsNumber: true })}
           />
           <span>minutos.</span>
         </div>
@@ -44,7 +59,7 @@ export function Timer() {
         </div>
 
         <button
-          disabled
+          disabled={isSubmitDisabled}
           className="flex items-center justify-center gap-2 w-full p-2 rounded-md bg-emerald-500 text-white disabled:opacity-50 disabled:cursor-not-allowed enabled:hover:bg-emerald-600"
           type="submit"
         >
