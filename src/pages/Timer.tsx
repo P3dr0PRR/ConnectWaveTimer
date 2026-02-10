@@ -1,13 +1,25 @@
-import { watch } from 'fs';
+
 import { Play } from 'lucide-react';
 import {useForm} from 'react-hook-form';
 
 
+interface NewCycleFormData {
+  task: string;
+  minutesAmount: number;
+}
+
 export function Timer() {
 
-const {register, handleSubmit, watch} = useForm();
+const {register, handleSubmit, watch, reset} = useForm<NewCycleFormData>(
+  {defaultValues: {
+  task: '',
+  minutesAmount: 0,
+}
+}
+);
 
-function handleCreateNewCycle() {
+function handleCreateNewCycle(_data: NewCycleFormData) {
+  reset();
 }
 
 const {task, minutesAmount} = watch();
@@ -23,7 +35,7 @@ const isSubmitDisabled = !task || !minutesAmount;
           </label>
 
           <input
-            id="task"
+            id="taskInput"
             list="task-suggestions"
             type="text"
             placeholder="Nome..."
@@ -36,11 +48,11 @@ const isSubmitDisabled = !task || !minutesAmount;
             <option value="Reunião" />
           </datalist>
 
-          <label htmlFor="minutesAmount" className="text-center shrink-0">
+          <label htmlFor="minutesAmountInput" className="text-center shrink-0">
             Durante
           </label>
           <input
-            id="minutesAmount"
+            id="minutesAmountInput"
             max={60}
             type="number"
             placeholder="-  00 +"
