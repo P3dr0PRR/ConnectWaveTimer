@@ -47,8 +47,8 @@ export function History() {
       <h1 className="text-2xl font-bold mb-4">Meu Histórico</h1>
 
       <div className="hidden md:block mt-6 rounded-lg overflow-hidden border-2 border-emerald-500 p-2">
-        <table className="w-full text-left border-collapse ">
-         <thead className="bg-gray-800 border-b border-gray-600">
+        <table className="w-full text-left border-collapse">
+          <thead className="bg-gray-800 border-b border-gray-600">
             <tr>
               <th scope="col">Tarefa</th>
               <th scope="col">Duração</th>
@@ -56,7 +56,7 @@ export function History() {
               <th scope="col">Status</th>
             </tr>
           </thead>
-        <tbody className="bg-gray-700 border-t border-gray-600">
+          <tbody className="bg-gray-700 border-t border-gray-600">
             <tr>
               <td>tarefa</td>
               <td>25 minutos</td>
