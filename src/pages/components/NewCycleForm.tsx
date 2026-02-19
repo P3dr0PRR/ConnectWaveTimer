@@ -1,5 +1,22 @@
-export function NewCycleForm() {
-    return (
+import { useContext } from 'react';
+import { CyclesContext } from '../Timer';
+import { UseFormRegister } from 'react-hook-form';
+
+interface NewCycleFormData {
+  task: string;
+  minutesAmount: number;
+}
+
+
+
+interface NewCycleFormProps {
+  register: UseFormRegister<NewCycleFormData>;
+}
+
+export function NewCycleForm({ register }: NewCycleFormProps) {
+  const { activeCycle } = useContext(CyclesContext);
+
+  return (
         <section className="flex flex-col md:flex-row md:flex-wrap gap-2 items-center justify-center w-full text-white text-lg">
           <label htmlFor="task" className="text-center shrink-0">
             Vou trabalhar em
