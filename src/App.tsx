@@ -1,14 +1,13 @@
-import { Router } from './components/Router';
-import { BrowserRouter } from 'react-router-dom';
-// import { Home } from './Home';
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./components/Router";
+import { CyclesContentProvider } from "./contexts/CyclesContext";
 
 export function App() {
   return (
-    <div>
-{/* <Home /> */}
-       <BrowserRouter>
+    <BrowserRouter>
+      <CyclesContentProvider>
         <Router />
-      </BrowserRouter> 
-    </div>
+      </CyclesContentProvider>
+    </BrowserRouter>
   );
 }

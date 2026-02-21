@@ -1,10 +1,14 @@
 import { differenceInSeconds } from "date-fns";
-import { useState, useEffect, useContext } from "react";
-import { CyclesContext } from "../Timer";
+import { useEffect, useContext } from "react";
+import { CyclesContext } from "../../contexts/CyclesContext";
 
 export function Countdown() {
-  const { activeCycle, markCicleAsFinished } = useContext(CyclesContext);
-  const [amountSecondsPassed, setAmountSecondsPassed] = useState(0);
+  const {
+    activeCycle,
+    markCicleAsFinished,
+    amountSecondsPassed,
+    setAmountSecondsPassed,
+  } = useContext(CyclesContext);
 
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0;
   const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0;
@@ -12,15 +16,18 @@ export function Countdown() {
   const minutesAmountValue = Math.floor(currentSeconds / 60);
   const secondsAmount = currentSeconds % 60;
 
-  const minutes = String(minutesAmountValue).padStart(2, '0');
-  const seconds = String(secondsAmount).padStart(2, '0');
+  const minutes = String(minutesAmountValue).padStart(2, "0");
+  const seconds = String(secondsAmount).padStart(2, "0");
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
 
     if (activeCycle) {
       interval = setInterval(() => {
-        const secondsDifference = differenceInSeconds(new Date(), activeCycle.startDate);
+        const secondsDifference = differenceInSeconds(
+          new Date(),
+          activeCycle.startDate,
+        );
 
         if (secondsDifference >= totalSeconds) {
           markCicleAsFinished();
@@ -33,15 +40,17 @@ export function Countdown() {
     }
 
     return () => {
-      clearInterval(interval);
+      if (interval !== undefined) {
+        clearInterval(interval);
+      }
     };
-  }, [activeCycle, totalSeconds, markCicleAsFinished]);
+  }, [activeCycle, totalSeconds, markCicleAsFinished, setAmountSecondsPassed]);
 
   useEffect(() => {
     if (activeCycle) {
       document.title = `${activeCycle.task} - ${minutes}:${seconds}`;
     } else {
-      document.title = 'ConnectWave Timer';
+      document.title = "ConnectWave Timer";
     }
   }, [minutes, seconds, activeCycle]);
 
